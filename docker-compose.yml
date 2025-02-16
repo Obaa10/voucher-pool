@@ -1,0 +1,47 @@
+version: '1.0'
+services:
+  voucher-api:
+    image: voucher-api:1.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    environment:
+      NODE_ENV: production
+      DB_HOST: voucher-mysql
+      DB_PORT: 3306
+      DB_USERNAME: root
+      DB_PASSWORD: password
+      DB_DATABASE: voucherdb
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - voucher_network
+    volumes:
+      - /var/www/istaqim/uploads:/usr/src/app/uploads
+
+  db:
+    image: mysql:8
+    container_name: voucher-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: voucherdb
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+    volumes:
+      - db_data:/var/lib/mysql # Mount volume to persist database data
+    networks:
+      - voucher_network
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost']
+      timeout: 20s
+      retries: 10
+
+volumes:
+  db_data:
+
+networks:
+  voucher_network:
