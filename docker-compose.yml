@@ -19,9 +19,7 @@ services:
         condition: service_healthy
     networks:
       - voucher_network
-    volumes:
-      - /var/www/istaqim/uploads:/usr/src/app/uploads
-
+      
   db:
     image: mysql:8
     container_name: voucher-mysql
