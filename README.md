@@ -1,7 +1,6 @@
 ## Project Overview
 
-Holo Voucher Pool API (NestJS)
-The objective is to create a voucher pool in NestJs. You can use whichever libraries you prefer. The service should expose a ​REST API​.
+Voucher Pool API (NestJS)
 
 A voucher pool is a collection of voucher codes that can be used by customers to get discounts on website. Each code may only be used once, and we would like to know when it was used by the customer. Since there can be many customers in a voucher pool, we need a call that auto-generates voucher codes for each customer. Here’s
 
