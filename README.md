@@ -50,8 +50,15 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+run unit tests
+```bash
+npm run test
+```
+
 ## Running the app with Docker
 
 ```bash
 $ docker-compose up --build
 ```
+
+
